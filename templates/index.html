@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+<head>
+<title>Anime Recommendations</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">	
+<link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+
+<style>
+body,h1,h2,h3,h4,h5,h6 {font-family: "Lato", sans-serif;}
+body, html {
+  height: 100%;
+  color: #111;
+  line-height: 1.8;
+}
+
+/* Create a Parallax Effect */
+.bgimg {
+  background-attachment: fixed;
+  background-position: center;
+  background-repeat: repeat;
+  background-size: cover;
+}
+
+/* First image (Logo. Full height) */
+.bgimg {
+  background-image: url("/static/flowers.jpg");
+  min-height: 100%;
+}
+
+
+.w3-wide {letter-spacing: 10px;}
+.w3-hover-opacity {cursor: pointer;}
+
+/* Turn off parallax scrolling for tablets and phones */
+@media only screen and (max-device-width: 1600px) {
+  .bgimg={
+    background-attachment: scroll;
+    min-height: 400px;
+  }
+}
+</style>
+
+</head>
+  <link rel="icon" type="image/png" href="/static/favicon.ico">
+  <body>
+  <div class="bgimg w3-display-container w3-opacity-min">
+      <div class="w3-display-middle w3-white" style="white-space:wrap;">
+         <div class="w3-row">
+         <div class="w3-col m6 w3-padding-large">
+            <H1> Flower Predictions! </H1>
+            <p>Take a photo of a flower and upload it to see what type of flower it is!</p>
+            <p> It only determines wheter a flower is a dandelion, daisy, rose, sunflower or a tulip <br> Simply upload an image and let the app do its magic!</p>
+            <form method=post enctype=multipart/form-data>
+            <p><input type=file name=file>
+            <input type=submit value=Upload>
+            </form>
+            </div>
+         <div class="w3-col m6 w3-padding-small">
+            <h2>{{ prettyflower }}</h2>
+            {% if results == 0 %}
+                <img src="/static/daisy.png" style="width:75%">
+            {% elif results == 1 %}   
+                <img src="static/dandelion.png" style="width:75%">
+            {% elif results == 2 %}   
+                <img src="/static/rose.png" style="width:75%">
+            {% elif results == 3 %}   
+                <img src="static/sunflower.png" style="width:75%">
+            {% elif results == 4 %}   
+                <img src="static/tulip.png" style="width:75%">     
+            {% else %}                 
+            {% endif %}     
+            </div>                   
+            </div>
+        </div>
+    </div>
+  </body>
+</html>
